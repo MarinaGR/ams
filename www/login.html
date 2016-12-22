@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>AMS Profesionales - Ávila Multiasistencia</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=2.0, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="cache-control" content="no-cache">
+		<meta name="expires" content="0">
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOODP,NOSNIPPET">
+		
+		<link href="./styles/estilos_01.css" rel="stylesheet" type="text/css">
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jqueryui.js"></script>
+		<script src="./js/jquery.ui.touch-punch.min.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./cordova.js"></script>
+		
+		<script>
+		var session_ams=getLocalStorage("session_ams"); 
+		
+		$(document).ready(function() {
+		
+		});
+		
+		document.addEventListener("deviceready", function() {
+			
+		});
+		
+		$(window).load(function() {	
+		
+			check_session_init(true);
+			
+		});
+		
+		function onBackKeyDown()
+		{
+			navigator.app.exitApp();
+			return false;
+		}
+
+		</script>
+		
+	</head>
+
+	<body class="ov_body_01" onload="onBodyLoad()">
+		<div id="cortina"> </div>
+
+		<div id="contenedor" class="contenedor">
+				
+			<div class="contenido" id="contenido">				
+			
+				<form action="" method="post" id="form_acceso">
+					
+					<img src="./images/icons/perfil.png" alt="perfil" width="50" />
+					
+					<div class="label_01">Usuario</div>
+					<input class="input_01" id="user" name="user" type="email" />
+					<div class="label_01">Contraseña</div>
+					<input class="input_01" id="passw" name="passw" type="password" />
+					<br>
+					<input class="boton_02" name="entrar" type="button" value="ENTRAR" onclick="start_user_session('form_acceso');" />
+					
+					<div id="loading" class="load"> </div>
+				
+				</form>
+
+			</div>		
+		</div>		
+	</body>
+	
+</html>

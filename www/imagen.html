@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>Fiestas - Ayuntamiento de Navaluenga</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=2.0, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOODP,NOSNIPPET">
+		
+		<link href="./styles/estilos_01.css" rel="stylesheet" type="text/css">
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jqueryui.js"></script>
+		<script src="./js/jquery.ui.touch-punch.min.js"></script>
+		<script src="./js/iscroll-zoom.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./cordova.js"></script>
+		
+		<script type="text/javascript">
+		var identificador=get_var_url("id");
+		var myScroll;
+		
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		
+		function loaded_DOM() {
+			myScroll = new IScroll('#wrapper', {
+				zoom: true,
+				zoomStart: 1,
+				zoomMin: 1,
+				zoomMax: 2,
+				/*mouseWheel: true,
+				wheelAction: 'zoom',*/
+				scrollX: true,
+				scrollY: true
+			});
+			
+		}
+		
+		document.addEventListener("deviceready", function() {	
+			
+		}, false);
+
+		$(document).ready(function() {					
+			$("#wrapper").html("<img src='./resources/images/"+identificador+".jpg' /><br>");		
+		});
+		
+		$(window).load(function() {	
+			setTimeout(function () { myScroll.refresh();  }, 50); 						
+			loaded_DOM();	
+			
+		});		
+		
+		</script>	
+
+		<style>
+			#wrapper {
+				position: absolute;
+				z-index: 1;
+				top: 0px;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				overflow: hidden;
+			}
+		</style>		
+		
+	</head>
+
+	<body class="ov_body_01" onload="onBodyLoad()">
+		<div id="cortina"> </div>
+		<div id="cortina2"> </div>
+		
+		<!--<div id="contenedor" class="contenedor">
+			
+			<div id="contenedor_eventos" class="contenido">
+
+			</div>
+			
+			<div class="cupon_02">
+					
+			</div>
+
+		</div>	-->
+		
+		
+		<div id="wrapper">
+
+		</div>
+		
+		<div id="menu">			
+			<span onclick="go_to_page('programa')"><i class="fa fa-arrow-left fa-2x"> </i></span>
+		</div>	
+	
+	</body>
+	
+</html>

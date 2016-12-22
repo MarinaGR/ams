@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>AMS Profesionales - Ávila Multiasistencia</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=2.0, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="cache-control" content="no-cache">
+		<meta name="expires" content="0">
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOODP,NOSNIPPET">
+		
+		<link href="./styles/estilos_01.css" rel="stylesheet" type="text/css">
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jqueryui.js"></script>
+		<script src="./js/jquery.ui.touch-punch.min.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./cordova.js"></script>
+		
+		<script>
+		var id_key=getLocalStorage("id-key"); 
+		var id_parte=get_var_url("id"); 
+		check_session_init(false);		
+		
+		document.addEventListener("deviceready", function() {
+			$(".portada").css("min-height",	viewport_height-$("#menu").outerHeight()+"px");
+		});
+		
+		$(document).ready(function() {
+		
+			get_api_info(id_key,'parte','zona_info_parte',[['id',id_parte]]);
+					
+			if(getLocalStorage("subcontrata")==FLAG_SUBCONTRATA) 
+			{
+				$("#ccita_operario").val(getLocalStorage('usuario'));
+				$("#boton_concertar_cita").show(); 
+				$("#boton_enviar_valoracion").show(); 
+			}
+			else 
+			{
+				//$("#boton_concertar_cita").hide(); 
+				//$("#boton_enviar_valoracion").hide(); 
+			}	
+					
+			$("#boton_info_parte").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_info_parte").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_concertar_cita").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_concertar_cita").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_cambiar_estado").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_cambiar_estado").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_enviar_parte").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_enviar_parte").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_enviar_fotos").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_enviar_fotos").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_enviar_valoracion").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_enviar_valoracion").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_enviar_ficheros").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_enviar_ficheros").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			$("#boton_notas").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_notas").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+		});
+		
+		$(window).load(function() {					
+			
+		});
+
+		</script>
+		
+	</head>
+
+	<body class="ov_body_01" onload="onBodyLoad()">
+		<div id="cortina"> </div>
+
+		<div id="contenedor" class="contenedor">
+				
+			<div id="menu" class="menu_sup">
+				<span class="icon-arrow"><i class="fa fa-arrow-left" id="boton_atras"> </i> PARTES</span>
+				<span class="icon-menu"><i class="fa fa-bars" id="boton_menu"> </i></span>
+				<div id="menu_general"> </div>
+			</div>
+			<hr class="linea_02">
+			<div class="contenido" id="contenido">				
+						
+				<div class="flotante_01">
+					<div class="botones boton_02" id="boton_info_parte">INFORMACIÓN PARTE</div>
+					<div class="botones boton_01" id="boton_concertar_cita">CONCERTAR CITA</div>
+					<div class="botones boton_01" id="boton_cambiar_estado">CAMBIAR ESTADO</div>					
+					<div class="botones boton_01" id="boton_enviar_parte">ENVIAR PARTE</div>
+					<div class="botones boton_01" id="boton_enviar_fotos">ENVIAR FOTOS</div>
+					<div class="botones boton_01" id="boton_enviar_valoracion">ENVIAR VALORACIÓN ECONÓMICA</div>
+					<div class="botones boton_01" id="boton_enviar_ficheros">ADJUNTAR OTROS FICHEROS</div>	
+					<div class="botones boton_01" id="boton_notas">NOTAS</div>	
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_info_parte" style="display:block;">
+					<!--
+					<div class="etiqueta_01">
+						<label>Nº de orden</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Cliente</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Teléfono</label>
+						<span><a href="tel:651548771">651548771</a></span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Fecha inicio</label>
+						<span>2016-10-03</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Dirección</label>
+						<span>CL AVDA DERECHOS HUMANOS 84 PORTAL 3,1º D AVILA<br>05004	AVILA</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Estado</label>
+						<span>SUPERVISADA</span>
+						<span>URGENTE</span>
+						<span>VISITADA</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Observaciones</label>
+						<span>-</span>
+					</div>
+					-->
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_concertar_cita">
+					<div class="etiqueta_01">
+						<label>CONCERTAR CITA</label>
+					</div>
+					<form>
+						<input id="ccita_operario" value="" type="hidden" disabled class="input_02" />
+						<input id="cnum_orden" value="" type="hidden" disabled class="input_02" />
+						
+						<div class="etiqueta_01">
+							<label>Fecha</label>
+							<span><input id="ccita_fecha" value="" type="date" class="input_02" /></span>
+						</div>
+						<div class="etiqueta_01">
+							<label>Hora</label>
+							<span><input id="ccita_hora" value="" type="time" class="input_02" /></span>
+						</div>
+						<div class="etiqueta_01">
+							<label>Estado</label>
+							<span><input id="ccita_estado" value="" type="text" class="input_02" /></span>
+						</div>							
+						<div class="etiqueta_01">
+							<label>Duración (minutos)</label>
+							<span><input id="ccita_duracion" value="" type="number" class="input_02" /></span>
+						</div>
+						<div class="etiqueta_01">
+							<label>Observaciones</label>
+							<span><textarea id="ccita_observaciones" placeholder="Observaciones" class="textarea_01" ></textarea></span>
+						</div>
+						<input class="boton_01" onclick="" type="button" value="ENVIAR" />
+					</form>
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_cambiar_estado">
+					<div class="etiqueta_01">
+						<label>CAMBIAR ESTADO</label>
+					</div>
+					<p>Muestra listado de citas pendientes del operario y para cada una la opción de finalizar</p>
+					<p>¿Deseas marcar la cita como finalizada?</p>
+					<form id="form_finalizacion_cita">
+						<input id="ccita_finalizacion" value="" type="hidden" class="input_02" /></span>
+						<div class="etiqueta_01">
+							<label>SI</label>
+							<span><input id="ccita_estado" value="1" type="hidden" class="input_02" /></span>
+							<input class="boton_01" onclick="" type="button" value="ENVIAR" />
+						</div>
+					</form>
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_enviar_parte">
+					<div class="etiqueta_01">
+						<label>ENVIAR PARTE</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Observaciones</label>
+						<span>-</span>
+					</div>
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_enviar_fotos">
+					<div class="etiqueta_01">
+						<label>ENVIAR FOTOS</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Observaciones</label>
+						<span>-</span>
+					</div>
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_enviar_valoracion">
+					<div class="etiqueta_01">
+						<label>ENVIAR VALORACIÓN ECONÓMICA</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Observaciones</label>
+						<span>-</span>
+					</div>
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_enviar_ficheros">
+					<div class="etiqueta_01">
+						<label>ENVIAR FICHEROS</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Observaciones</label>
+						<span>-</span>
+					</div>
+				</div>
+				
+				<div class="flotante_02 zonas_parte" id="zona_notas">
+					<div class="etiqueta_01">
+						<label>NOTAS</label>
+						<span>21319</span>
+					</div>
+					<div class="etiqueta_01">
+						<label>Observaciones</label>
+						<span>-</span>
+					</div>
+				</div>
+				
+			</div>		
+		</div>		
+	</body>
+	
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>AMS Profesionales - Ávila Multiasistencia</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=2.0, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="cache-control" content="no-cache">
+		<meta name="expires" content="0">
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOODP,NOSNIPPET">
+		
+		<link href="./styles/estilos_01.css" rel="stylesheet" type="text/css">
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jqueryui.js"></script>
+		<script src="./js/jquery.ui.touch-punch.min.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./cordova.js"></script>
+		
+		<script>
+		var id_key=getLocalStorage("id-key"); 
+		check_session_init(false);
+		
+		$(document).ready(function() {
+			
+			get_api_info(id_key,'partes','body_tabla_partes');
+			
+			var boton_atras=document.getElementById('boton_atras');
+			boton_atras.addEventListener("click", function() {
+				window.history.back();
+			});
+		});
+		
+		document.addEventListener("deviceready", function() {
+			
+			var boton_atras=document.getElementById('boton_atras');
+			boton_atras.addEventListener("click", function() {
+				onBackKeyDown();
+			});
+		
+		});
+		
+		$(window).load(function() {					
+			
+		});
+		
+		function onBackKeyDown()
+		{
+			navigator.app.exitApp();
+			return false;
+		}
+
+		</script>
+		
+	</head>
+
+	<body class="ov_body_01" onload="onBodyLoad()">
+		<div id="cortina"> </div>
+
+		<div id="contenedor" class="contenedor">
+				
+			<div id="menu" class="menu_sup">
+				<span class="icon-arrow"><i class="fa fa-arrow-left" id="boton_atras"> </i> PARTES</span>
+				<span class="icon-menu"><i class="fa fa-bars" id="boton_menu"> </i></span>
+				<div id="menu_general"> </div>
+			</div>
+			<hr class="linea_02">
+			<div class="contenido" id="contenido">				
+												
+				<table class="tabla_partes">
+					<thead>
+						<tr>
+							<td>PARTE</td>
+							<td>ESTADO</td>
+							<td>DIRECCIÓN</td>
+							<td>FECHA</td>
+						</tr>
+					</thead>
+					<tbody id="body_tabla_partes">
+						<!--
+						<tr onclick="window.location.href='parte.html'">
+							<td>21319</td>
+							<td>URGENTE</td>
+							<td>CTRA GREDOS, 32	NAVALMORAL<br>05120	AVILA</td>
+							<td>2016-10-27</td>
+						</tr>
+						<tr onclick="window.location.href='parte.html'">
+							<td>19728</td>
+							<td>ABIERTO</td>
+							<td>CL AREVALO S/N 	VINADEROS<br>05216 AVILA</td>
+							<td>2016-10-10</td>
+						</tr>
+						<tr onclick="window.location.href='parte.html'">
+							<td>12400</td>
+							<td>PENDIENTE</td>
+							<td>CL SAN CRISTOBAL DE LA LAGUNA CHALET Nº 24 AVILA<br>05004 AVILA</td>
+							<td>2016-10-05</td>
+						</tr>
+						-->
+					</tbody>
+				</table>
+
+			</div>		
+		</div>		
+	</body>
+	
+</html>

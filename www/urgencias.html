@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>AMS Profesionales - Ávila Multiasistencia</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=2.0, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="cache-control" content="no-cache">
+		<meta name="expires" content="0">
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOODP,NOSNIPPET">
+		
+		<link href="./styles/estilos_01.css" rel="stylesheet" type="text/css">
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jqueryui.js"></script>
+		<script src="./js/jquery.ui.touch-punch.min.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./cordova.js"></script>
+		
+		<script>
+		var id_key=getLocalStorage("id-key"); 
+		var id_parte=get_var_url("id"); 
+		check_session_init(false);		
+		
+		document.addEventListener("deviceready", function() {
+			$(".portada").css("min-height",	viewport_height-$("#menu").outerHeight()+"px");
+		});
+		
+		$(document).ready(function() {
+							
+			if(getLocalStorage("subcontrata")==FLAG_SUBCONTRATA) 
+			{
+				$("#ccita_operario").val(getLocalStorage('usuario'));
+				$("#boton_concertar_cita").show(); 
+				$("#boton_enviar_valoracion").show(); 
+			}
+			else 
+			{
+				//$("#boton_concertar_cita").hide(); 
+				//$("#boton_enviar_valoracion").hide(); 
+			}	
+					
+			$("#boton_info_parte").on('click', function() {
+				$(".zonas_parte").hide();
+				$("#zona_info_parte").show();
+				$(".botones").removeClass("boton_02");
+				$(".botones").addClass("boton_01");
+				$(this).removeClass("boton_01");
+				$(this).addClass("boton_02");
+			});
+			
+		});
+		
+		$(window).load(function() {					
+			
+		});
+
+		</script>
+		
+	</head>
+
+	<body class="ov_body_01" onload="onBodyLoad()">
+		<div id="cortina"> </div>
+
+		<div id="contenedor" class="contenedor">
+				
+			<div id="menu" class="menu_sup">
+				<span class="icon-arrow"><i class="fa fa-arrow-left" id="boton_atras"> </i> PARTES</span>
+				<span class="icon-menu"><i class="fa fa-bars" id="boton_menu"> </i></span>
+				<div id="menu_general"> </div>
+			</div>
+			<hr class="linea_02">
+			<div class="contenido" id="contenido">				
+	
+				<div class="zona_parte_trabajo">
+					<div class="etiqueta_03">
+						PARTE DE TRABAJO
+					</div>
+					
+					<form id="form_parte_urgencias">
+					
+						<input id="ccita_operario" value="" type="hidden" disabled class="input_03" />
+						
+						<div class="etiqueta_01">
+							<label>Localidad</label>
+							<span><input id="pt_localidad" value="" type="text" class="input_03" /></span>
+						</div>
+						
+						<div class="etiqueta_02">
+							ASEGURADO
+						</div>
+						
+						<div class="etiqueta_01 flotante_03">
+							<label>Citado Fecha</label>
+							<span><input id="pt_citado_fecha" value="" type="date" class="input_03" /></span>
+						</div>
+						<div class="etiqueta_01 flotante_03">
+							<label>Citado Hora</label>
+							<span><input id="pt_citado_hora" value="" type="time" class="input_03" /></span>
+						</div>
+						<div class="clear"></div>
+						
+						<div class="etiqueta_01">
+							<label>Nombre</label>
+							<span><input id="pt_citado_nombre" value="" type="text" class="input_03" /></span>
+						</div>							
+						<div class="etiqueta_01">
+							<label>Dirección</label>
+							<span><input id="pt_citado_direccion" value="" type="text" class="input_03" /></span>
+						</div>
+						<div class="etiqueta_01">
+							<label>Teléfono</label>
+							<span><input id="pt_citado_tlf" value="" type="text" class="input_03" /></span>
+						</div>
+						
+						<div class="etiqueta_02">
+							AVERÍA
+						</div>
+						
+						<div class="etiqueta_01">
+							<span><textarea id="ccita_observaciones" placeholder="Detalles" class="textarea_02" ></textarea></span>
+						</div>
+						
+						<div class="etiqueta_02">
+							TRABAJO REALIZADO
+						</div>
+						
+						<div class="etiqueta_01">
+							<label>Reparadores</label>
+							<span><input id="pt_citado_reparador" value="" type="text" class="input_03" /></span>
+						</div>	
+						<div class="etiqueta_01">
+							<label>Horario</label>
+							<span><input id="pt_citado_horario_reparador" value="" type="text" class="input_03" /></span>
+						</div>	
+						<div class="etiqueta_01">
+							<label>Tipo de trabajo</label>
+							<span><textarea id="pt_trabajos_reparador" placeholder="Detalles" class="textarea_02" ></textarea></span>
+						</div>
+						
+						<input class="boton_01" onclick="enviar_parte_trabajo('form_parte_urgencias')" type="button" value="ENVIAR" />
+						
+					</form>
+					
+				</div>
+								
+			</div>		
+		</div>		
+	</body>
+	
+</html>

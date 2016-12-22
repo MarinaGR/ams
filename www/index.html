@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>AMS Profesionales - Ávila Multiasistencia</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=2.0, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<meta name="cache-control" content="no-cache">
+		<meta name="expires" content="0">
+		<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE,NOODP,NOSNIPPET">
+		
+		<link href="./styles/estilos_01.css" rel="stylesheet" type="text/css">
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jqueryui.js"></script>
+		<script src="./js/jquery.ui.touch-punch.min.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./cordova.js"></script>
+		
+		<script>
+		var session_ams=getLocalStorage("session_ams"); 
+		
+		//$(document).ready(function() {
+		document.addEventListener("deviceready", function() {
+			$(".portada").css("min-height",	viewport_height-$("#menu").outerHeight()+"px");
+		});
+		
+		$(window).load(function() {
+		
+			check_session_init(true);	
+			
+		});
+		
+		function onBackKeyDown()
+		{
+			navigator.app.exitApp();
+			return false;
+		}
+
+		</script>
+		
+	</head>
+
+	<body class="ov_body_01" onload="onBodyLoad()">
+		<div id="cortina"> </div>
+
+		<div id="contenedor">
+			<div class="portada" >
+				<img src="./images/general/portada.png" />
+			</div>		
+		</div>		
+	</body>
+	
+</html>
