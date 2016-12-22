@@ -170,6 +170,17 @@ a.button_nav {
 }
 /* FIN MENU */
 
+.panel_firma {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #eee;
+	z-index: 9999;
+}
+
 .message_01 {
     padding: 10px;
     font-size: 0.9em;
@@ -280,6 +291,16 @@ hr.linea_02 {
 	margin: 5px auto 0px auto;
 	height: 75px;
 }
+.canvas_01 {
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	padding: 10px;
+	color: #888;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	margin: 5px auto 0px auto;
+}
 .boton_01 {
 	background-color: #C40000;
 	color: #fff;
@@ -308,6 +329,28 @@ hr.linea_02 {
 .boton_02:hover {
 	color: #fff;
 	background-color: #C40000;
+}
+.boton_03 {
+    background-color: #f2f2f2;
+	color: #C40000;
+	font-size: 0.9em;
+	padding: 10px;
+	min-width: 100px;
+	display: inline-block;
+	cursor: pointer;
+	margin: 10px auto;
+	text-align: center;
+	border: 2px solid #C40000;
+	line-height: 1.5em;
+}
+.boton_03:hover {
+	color: #fff;
+	background-color: #C40000;
+}
+.img_firma {
+	max-width: 320px;
+    margin: auto;
+    display: block;
 }
 
 .info {

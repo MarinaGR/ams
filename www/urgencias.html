@@ -15,11 +15,14 @@
 		<script src="./js/jqueryui.js"></script>
 		<script src="./js/jquery.ui.touch-punch.min.js"></script>
 		<script src="./js/funciones.js"></script>
+		<script src="./js/signature-mark.js"></script>
 		<script src="./cordova.js"></script>
 		
 		<script>
 		var id_key=getLocalStorage("id-key"); 
 		var id_parte=get_var_url("id"); 
+		var sign_canvas;
+		
 		check_session_init(false);		
 		
 		document.addEventListener("deviceready", function() {
@@ -48,8 +51,37 @@
 				$(this).removeClass("boton_01");
 				$(this).addClass("boton_02");
 			});
-			
+						
 		});
+		
+		function show_complete_screen_signature() {
+			$("#panel_firma").show();		
+			
+			sign_canvas = document.getElementById("pt_firma");
+			sign_canvas.width  = $(window).width();
+			sign_canvas.height = $(window).height()-150;
+			
+			SignatureMark(sign_canvas);
+			
+			var limpiar = document.getElementById("clean_canvas");
+			limpiar.addEventListener("click",function(){
+				sign_canvas.width=sign_canvas.width;
+			},false);
+			
+			var guardar = document.getElementById("save_sign");
+			guardar.addEventListener("click",function(){
+				var dataString = sign_canvas.toDataURL("image/png");
+				var index = dataString.indexOf(",")+1;
+				dataString = dataString.substring(index);
+				$("#pt_firma_guardada").val("data:image/png;base64,"+dataString);
+				$("#pt_img_firma").html("<img src='data:image/png;base64,"+dataString+"' width='100%' class='img_firma' />");
+				$("#panel_firma").hide();	
+				$("#pt_boton_firmar").hide();	
+				$("#pt_enviar").show();	
+				
+			},false);
+
+		}
 		
 		$(window).load(function() {					
 			
@@ -61,6 +93,17 @@
 
 	<body class="ov_body_01" onload="onBodyLoad()">
 		<div id="cortina"> </div>
+		
+		<div class="panel_firma" id="panel_firma">
+			<h3 class="etiqueta_03">
+				FIRMA AQUÍ
+			</h3>
+			<canvas id="pt_firma" class="canvas_01"> </canvas>
+			<div style="text-align: center">
+				<input class="boton_03" id="clean_canvas" type="button" value="LIMPIAR" />
+				<input class="boton_03" id="save_sign" type="button" value="GUARDAR FIRMA" />
+			</div>
+		</div>
 
 		<div id="contenedor" class="contenedor">
 				
@@ -137,8 +180,25 @@
 							<label>Tipo de trabajo</label>
 							<span><textarea id="pt_trabajos_reparador" placeholder="Detalles" class="textarea_02" ></textarea></span>
 						</div>
+						<div class="etiqueta_01">
+							<label>Expediente terminado?</label>
+							<select id="pt_expediente_terminado" class="input_03">
+								<option></option>
+								<option value="SI">SI</option>
+								<option value="NO">NO</option>
+							</select>
+						</div>
 						
-						<input class="boton_01" onclick="enviar_parte_trabajo('form_parte_urgencias')" type="button" value="ENVIAR" />
+						<div class="etiqueta_01">
+							<label>Conforme</label>
+							<br>
+							<input id="pt_boton_firmar" class="boton_02" onclick="show_complete_screen_signature()" type="button" value="FIRMAR" />
+							
+							<input type="hidden" id="pt_firma_guardada" value="" />
+							<div id="pt_img_firma"> </div>
+						</div>
+						
+						<input class="boton_02" style="display:none;" id="pt_enviar" onclick="enviar_parte_trabajo('form_parte_urgencias')" type="button" value="ENVIAR PARTE" />
 						
 					</form>
 					
@@ -146,6 +206,7 @@
 								
 			</div>		
 		</div>		
+			
 	</body>
 	
 </html>

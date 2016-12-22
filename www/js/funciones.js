@@ -53,9 +53,7 @@ $(window).load(function() {
 function onBodyLoad()
 {		
 	document.addEventListener("deviceready", onDeviceReady, false);
-	
-	document.addEventListener("boton_atras", onBackKeyDown, false);
-	
+		
 	var alto_minimo=$(window).outerHeight()-parseInt($(".contenedor").css("padding-bottom"))-parseInt($(".contenedor").css("padding-top"))-$(".contenedor_ads").outerHeight(true);
 	
 	$(".contenedor").css("min-height", alto_minimo+"px");
@@ -66,6 +64,12 @@ function onBodyLoad()
 		{
 			$(".contenedor_ads").css("padding-top","15px");
 		}
+	}
+	
+	var boton_atras=document.getElementById("boton_atras");
+	if(boton_atras!=null)
+	{
+		boton_atras.addEventListener("click", onBackKeyDown, false);	
 	}
 	
 	var boton_menu=document.getElementById("boton_menu");
@@ -438,6 +442,7 @@ function get_user_data(user) {
 		  async:false,
 		});
 }
+
 function get_api_info(user,operation,container,datos) {
 					
 	$.ajax({
