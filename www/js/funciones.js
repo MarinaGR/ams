@@ -1,5 +1,5 @@
-var project_url='http://172.26.0.169/'; //IP WIFI
-var project_url='http://127.0.0.1/'; 
+var project_url='http://172.26.0.157/'; //IP WIFI
+//var project_url='http://127.0.0.1/'; 
 var project_folder='APP_AMS/ams_app/';
 var url_api_file='server/api.php';
 var api_url=project_url+project_folder+url_api_file; 
@@ -11,9 +11,6 @@ var ApiKey='c3a2016d-f2f3-5fc7-8f8f-6ad7697c61cd';
 
 //var DATOS, DIRECTION, GEOLOCATION;
 var CONTENEDOR;
-
-var intersticial=true;
-var publi_banner_top=false;
 
 var daysNamesMini=new Array('L','M','M','J','V','S','D');
 var monthNames=new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
@@ -40,7 +37,6 @@ var imgsize="small";
 if(viewport_width>=758)
 	imgsize="big";
 
-var publi_url='http://hoopale.com/publicidad/loader.php?day='+current_day_of_month+'&month='+current_month+'&imgsize='+imgsize;
 
 $(window).load(function() {
 	$('#cortina').hide('fade', function() {
